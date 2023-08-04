@@ -50,6 +50,8 @@ def add_page():
 
 
     if st.button("Ajouter Fleur", key="ajouter_fleur_button"):
+        
+        # Formulaire
         iris_data = {
                 "sepal_length": sepal_length ,
                 "sepal_width":sepal_width,
@@ -57,29 +59,27 @@ def add_page():
                 "petal_width":petal_width
             }
 
-            # Envoyer les données à l'API
+        # Envoyer les données à l'API
         response = requests.get(url1, json=iris_data)
-            # Vérifier si la requête a réussi
+        
+        # Vérifier si la requête a réussi
         if response.ok:
-                with st.spinner('Wait for it...'):
-                    time.sleep(2)
-                st.success("Les informations de votre fleur ont été ajouté avec succès !")
-                st.write(f"La fleure est : {response.json()['prediction']}.")
-                st.write(f"Avec une probabilité d'exactitude de : {response.json()['probability']}.")
-                data = ({"prediction" : response.json()['prediction'],"probability" : response.json()['probability']},)
-                response_insert = requests.post(url2, json=data)
-                if response_insert.ok:
-                    st.success("Données insérées avec succès")
+            with st.spinner('Wait for it...'):
+                time.sleep(2)
+            st.success("Les informations de votre fleur ont été ajouté avec succès !")
+            st.write(f"La fleure est : {response.json()['prediction']}.")
+            st.write(f"Avec une probabilité d'exactitude de : {response.json()['probability']}.")
+            
+            # envoie de la prédiction en bdd.
+            data = ({"prediction" : response.json()['prediction'],"probability" : response.json()['probability']},)
+            response_insert = requests.post(url2, json=data)
+            
+            # Message pour l'utilisateur.
+            if response_insert.ok:
+                st.success("Données insérées avec succès")
         else:
-                st.error("Erreur lors de l'ajout des informations de votre fleur.")
+            st.error("Erreur lors de l'ajout des informations de votre fleur.")
 
-
-
-data = {
-    "prediction" : response.json()['prediction'],
-    "probability" : response.json()['probability']
-}
-response = requests.post(url2, json=data)
 
 # Fonction pour la page "Métriques"
 def metrics_page():
