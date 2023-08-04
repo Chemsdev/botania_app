@@ -12,8 +12,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # on copie le fichier app.py
 COPY app.py .
+COPY style.py .
+
 
 EXPOSE 8501
 
 # On renseigne la ligne de commande pour exécuter l'app.
 CMD ["streamlit", "run", "app.py"]
+
