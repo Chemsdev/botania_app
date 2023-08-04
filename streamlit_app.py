@@ -67,12 +67,14 @@ def add_page():
             with st.spinner('Wait for it...'):
                 time.sleep(2)
             st.success("Les informations de votre fleur ont été ajouté avec succès !")
+            
+            # Affichage de la prédiction
             st.write(f"La fleure est : {response.json()['prediction']}.")
             st.write(f"Avec une probabilité d'exactitude de : {response.json()['probability']}.")
             
             # envoie de la prédiction en bdd.
-            data = ({"prediction" : response.json()['prediction'],"probability" : response.json()['probability']},)
-            response_insert = requests.post(url2, json=data)
+            response_insert = requests.post(url2, json=({"prediction" : response.json()['prediction'], "probability" : response.json()['probability']},))
+            st.success("prediction bien envoyer en bdd !")
             
             # Message pour l'utilisateur.
             if response_insert.ok:
