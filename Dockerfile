@@ -1,17 +1,19 @@
-# Spécifiez l'image de base à utiliser (par exemple, une image Python)
-FROM python:3.8.12
+# On utilise python comme image de base.
+FROM python:3.8-slim-buster
 
-# Copiez le contenu de votre projet dans l'image
-COPY . /streamlit_app
+# On renseigne dossier principale de l'application.
+WORKDIR /app
 
-# Définissez le répertoire de travail (le répertoire où vos commandes seront exécutées)
-WORKDIR /streamlit_app
+# On copie le fichier requirements.txt
+COPY requirements.txt .
 
-# Installez les dépendances à partir du fichier requirements.txt
-RUN pip install -r requirements.txt
+# On lance le pip install du fichier requirements.
+RUN pip install --no-cache-dir -r requirements.txt
+
+# on copie le fichier app.py
+COPY app.py .
 
 EXPOSE 8501
 
-
-# Commande pour exécuter votre application Streamlit
-CMD ["streamlit", "run", "streamlit_app.py"]
+# On renseigne la ligne de commande pour exécuter l'app.
+CMD ["streamlit", "run", "app.py"]
