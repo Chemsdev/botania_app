@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # on copie le fichier app.py
 COPY app.py .
-COPY style.py .
+COPY style.css .
 
 
 EXPOSE 8501
