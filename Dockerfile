@@ -14,4 +14,4 @@ EXPOSE 8501
 
 
 # Commande pour exécuter votre application Streamlit
-CMD ["streamlit", "run", "streamlit_app.py","--server.port", "8501"]
+CMD ["streamlit", "run", "streamlit_app.py"]
