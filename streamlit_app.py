@@ -34,13 +34,13 @@ def add_page():
 
     st.title("Formulaire d'entrée pour les mesures d'une fleur")
 
-    # Créer des widgets pour les mesures de la fleur
+    # Créer des widgets pour les mesures de la fleur.
     sepal_length = st.number_input("Longueur du sépale", value=5.7, step=0.1)
     sepal_width = st.number_input("Largeur du sépale", value=3.1, step=0.1)
     petal_length = st.number_input("Longueur du pétale", value=4.9, step=0.1)
     petal_width = st.number_input("Largeur du pétale", value=2.2, step=0.1)
 
-    # Afficher les mesures de la fleur
+    # Afficher les mesures de la fleur.
     st.write("Mesures de la fleur:")
     st.write(f"Longueur du sépale: {sepal_length}")
     st.write(f"Largeur du sépale: {sepal_width}")
@@ -53,11 +53,11 @@ def add_page():
         
         # Formulaire
         iris_data = {
-                "sepal_length": sepal_length ,
-                "sepal_width":sepal_width,
-                "petal_length":petal_length,
-                "petal_width":petal_width
-            }
+            "sepal_length": sepal_length ,
+            "sepal_width":sepal_width,
+            "petal_length":petal_length,
+            "petal_width":petal_width
+        }
 
         # Envoyer les données à l'API
         response = requests.get(url1, json=iris_data)
@@ -91,11 +91,6 @@ def metrics_page():
 # Menu déroulant pour sélectionner la page à afficher
 menu = ["iris", "Graphes"]
 choice = st.sidebar.selectbox(" ", menu)
-# st.sidebar.title("IRIS")
-# image = Image.open('img1.PNG')
-# im = image.resize((150, 250))
-# st.sidebar.image(im, caption='Sunrise by the mountains')
-
 
 # Affichage de la page correspondant à la sélection du menu
 if choice == "iris":
