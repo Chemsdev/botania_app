@@ -51,12 +51,12 @@ def add_page():
 
     if st.button("Ajouter Fleur", key="ajouter_fleur_button"):
         
-        # Formulaire
+        # Formulaire.
         iris_data = {
-            "sepal_length": sepal_length ,
-            "sepal_width":sepal_width,
-            "petal_length":petal_length,
-            "petal_width":petal_width
+            "sepal_length" : sepal_length ,
+            "sepal_width"  : sepal_width,
+            "petal_length" : petal_length,
+            "petal_width"  : petal_width
         }
 
         # Envoyer les données à l'API
@@ -73,7 +73,7 @@ def add_page():
             st.write(f"Avec une probabilité d'exactitude de : {response.json()['probability']}.")
             
             # envoie de la prédiction en bdd.
-            response_insert = requests.post(url2, json=({"prediction" : response.json()['prediction'], "probability" : response.json()['probability']},))
+            response_insert = requests.post(url2, json=({"prediction" : response.json()['prediction'], "probability" : response.json()['probability']}))
             st.success("prediction bien envoyer en bdd !")
             
             # Message pour l'utilisateur.
